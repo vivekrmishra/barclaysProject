@@ -25,33 +25,33 @@ Another alternate to above design can be usage of Spring Transaction Management,
  
 2. For every user action, the corresponding API has been hosted. Like /report/, /createItem/, /updateSellPrice/, /updateBuy/, /updateSell/, /updateSellPrice/, /deleteItem/. Every api call has individual stored Procedure call. 
 
-3. /CreateItem – creates new item in itemdetails table set item as active
-                - create new record in item_sellprice_history table
-                - log activity to activity table as success.
+3. /CreateItem – creates new item in itemdetails table set item as active<br />
+                - create new record in item_sellprice_history table<br />
+                - log activity to activity table as success.<br />
                 
-4. /updateBuy – update the quantity of item in itedetails table
-              - log acitivity in activity table as success
+4. /updateBuy – update the quantity of item in itedetails table<br />
+              - log acitivity in activity table as success<br />
  
-5. /UpdateSell – checks if the quantity to sell is lees than or equals the available quantity. 
-              - If true, 
-                - deducts the quantity to available in itemdetails table, 
-                - log the activity in activity table as success
-             - If false
-		          - log the activity in activity table as failure
+5. /UpdateSell – checks if the quantity to sell is lees than or equals the available quantity. <br />
+              - If true, <br />
+                -- deducts the quantity to available in itemdetails table, <br />
+                -- log the activity in activity table as success<br />
+             - If false<br />
+		 -- log the activity in activity table as failure<br />
 
-6. /deleteItem – fetch the item from itemdetails table and mark it as delete
-                - log the activity in activity table as success
+6. /deleteItem – fetch the item from itemdetails table and mark it as delete<br />
+                - log the activity in activity table as success<br />
 
 7. /UpdateSellPrice – get the item id from itemdetails table and add new row to item_sellprice_history table with itemid, sellpriceid   
-                      and new sell price
-                      - update the itemdetails table with new sell price id
+                      and new sell price<br />
+                      - update the itemdetails table with new sell price id<br />
 
-8. /report – grabs the records since last report generation
-          - captures the set of rows that were sold
+8. /report – grabs the records since last report generation<br />
+          - captures the set of rows that were sold<br />
           - get the profit from the items sold. Note the record do maintain the sell price id, so a same item can have diferent sell 
-            priceid (that leads to different sell price) and profit is calculated accordingly. 
-          - check if any of item has been deleted since last report generation
-          - if yes 
-             – calculate the value with costprice * quantity left. This amount negates the profit
-          - Get the list of active items  
-          - send the details list with the net profit to server
+            priceid (that leads to different sell price) and profit is calculated accordingly.<br /> 
+          - check if any of item has been deleted since last report generation<br />
+          - if yes <br />
+             –- calculate the value with costprice * quantity left. This amount negates the profit<br />
+          - Get the list of active items<br />  
+          - send the details list with the net profit to server<br />
