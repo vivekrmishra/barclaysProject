@@ -13,7 +13,7 @@ User sends command through cell phone --> System gets the command and calls the 
 # Reason for the architechture:
 
 1. User enter the command through cell phone to add, sell, delete, or fetch items. Rest Service has been created to consume the messages
-2. Every command requires the manipulation of data, like if the the item has been sold, number of tables will be updated. The due to heavy beckend usage, decision was taken to do the logic in stored procs. It helps in one time DB conection and all transactions to perfomed in DB layer. 
+2. Every command requires the manipulation of data, like if the the item has been sold, number of tables will be updated. The due to heavy backend usage, decision was taken to do the logic in stored procs. It helps in one time DB conection and all transactions to perfomed in DB layer. 
 	
 Another alternate to above design can be usage of Spring Transaction Management, or even Hibernate, but above design aims to reduce the interfacing between Java and DB layer. 
 
@@ -25,14 +25,14 @@ Another alternate to above design can be usage of Spring Transaction Management,
  
 2. For every user action, the corresponding API has been hosted. Like /report/, /createItem/, /updateSellPrice/, /updateBuy/, /updateSell/, /updateSellPrice/, /deleteItem/. Every api call has individual stored Procedure call. 
 
-3. /CreateItem – creates new item in itemdetails table set item as active<br />
+3. /createItem – creates new item in itemdetails table set item as active<br />
                 - create new record in item_sellprice_history table<br />
                 - log activity to activity table as success.<br />
                 
 4. /updateBuy – update the quantity of item in itedetails table<br />
               - log acitivity in activity table as success<br />
  
-5. /UpdateSell – checks if the quantity to sell is lees than or equals the available quantity. <br />
+5. /updateSell – checks if the quantity to sell is lees than or equals the available quantity. <br />
               - If true, <br />
                 -- deducts the quantity to available in itemdetails table, <br />
                 -- log the activity in activity table as success<br />
@@ -42,7 +42,7 @@ Another alternate to above design can be usage of Spring Transaction Management,
 6. /deleteItem – fetch the item from itemdetails table and mark it as delete<br />
                 - log the activity in activity table as success<br />
 
-7. /UpdateSellPrice – get the item id from itemdetails table and add new row to item_sellprice_history table with itemid, sellpriceid   
+7. /updateSellPrice – get the item id from itemdetails table and add new row to item_sellprice_history table with itemid, sellpriceid   
                       and new sell price<br />
                       - update the itemdetails table with new sell price id<br />
 
