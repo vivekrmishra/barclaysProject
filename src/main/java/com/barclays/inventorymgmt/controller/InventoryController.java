@@ -29,7 +29,7 @@ public class InventoryController implements ErrorController{
 	@Autowired
 	InventoryService inventoryService; 
 
-	// -------------------Retrieve All Users---------------------------------------------
+	// -------------------Report All Items---------------------------------------------
 
 	@RequestMapping(value = "/report/", method = RequestMethod.GET)
 	public ResponseEntity<List<Item>> report() {
@@ -42,7 +42,7 @@ public class InventoryController implements ErrorController{
 		return new ResponseEntity<List<Item>>(items, HttpStatus.OK);
 	}
 
-	// -------------------Create a Item-------------------------------------------
+	// -------------------Create an Item-------------------------------------------
 
 	@RequestMapping(value = "/createItem/", method = RequestMethod.POST)
 	public ResponseEntity<?> createUser(@RequestBody Item item, UriComponentsBuilder ucBuilder) {
@@ -55,7 +55,7 @@ public class InventoryController implements ErrorController{
 		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	}	
 
-	// ------------------- Update a User ------------------------------------------------
+	// ------------------- Update Item Quantity ------------------------------------------------
 
 	@RequestMapping(value = "/updateBuy/{name}/{quantity}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateItem(@PathVariable("name") String name, @PathVariable("quantity") int quantity) {
@@ -68,7 +68,7 @@ public class InventoryController implements ErrorController{
 		return new ResponseEntity<Item>(item, HttpStatus.OK);
 	}
 	
-	// ------------------- Update a Item ------------------------------------------------
+	// ------------------- Sell an Item ------------------------------------------------
 
 	@RequestMapping(value = "/updateSell/{name}/{quantity}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateSell(@PathVariable("name") String name, @PathVariable("quantity") int quantity) {
@@ -82,7 +82,7 @@ public class InventoryController implements ErrorController{
 		return new ResponseEntity<Item>(item, HttpStatus.OK);
 	}
 	
-	// ------------------- Update a Item ------------------------------------------------
+	// ------------------- Update Sellipng Pice of an Item ------------------------
 
 	@RequestMapping(value = "/updateSellPrice/{name}/{sellPrice}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateSellPrice(@PathVariable("name") String name, @PathVariable("sellPrice") double sellPrice, @RequestBody Item item) {
@@ -94,7 +94,7 @@ public class InventoryController implements ErrorController{
 		return new ResponseEntity<Item>(item, HttpStatus.OK);
 	}
 
-	// ------------------- Delete a Item-----------------------------------------
+	// ------------------- Delete an Item-----------------------------------------
 
 		@RequestMapping(value = "/deleteItem/{name}", method = RequestMethod.DELETE)
 		public ResponseEntity<?> deleteUser(@PathVariable("name") String name) {

@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 
-@SpringBootApplication(scanBasePackages={"com.barclays.inventorymgmt"})// same as @Configuration @EnableAutoConfiguration @ComponentScan combined
+@SpringBootApplication(scanBasePackages={"com.barclays.inventorymgmt"})
 @PropertySource(value = { "classpath:application.properties" })
 public class SpringBootRestApiApp extends SpringBootServletInitializer{
  
